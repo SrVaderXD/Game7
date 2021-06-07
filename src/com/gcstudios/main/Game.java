@@ -6,15 +6,15 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import javax.swing.JFrame;
+
+import com.gcstudios.entities.EnemySpawn;
 import com.gcstudios.entities.Entity;
 import com.gcstudios.entities.Player;
 import com.gcstudios.graphics.Spritesheet;
@@ -37,6 +37,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static List<Entity> entities;
 	public static Spritesheet spritesheet;
 	public static Player player;
+	public EnemySpawn enemySpawn;
 
 	public UI ui;
 
@@ -50,6 +51,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		player = new Player(WIDTH / 2 - 8, HEIGHT - 16, 16, 16, 1, Entity.SHIP);
 		// world = new World();
 		ui = new UI();
+		enemySpawn = new EnemySpawn();
 		entities.add(player);
 	}
 
@@ -84,7 +86,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	}
 
 	public void tick() {
-
+		enemySpawn.tick();
+		
 		for (int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
 			e.tick();
