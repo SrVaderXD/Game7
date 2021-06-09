@@ -48,7 +48,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		spritesheet = new Spritesheet("/spritesheet.png");
 		entities = new ArrayList<Entity>();
-		player = new Player(WIDTH / 2 - 8, HEIGHT - 16, 16, 16, 1, Entity.SHIP);
+		player = new Player(WIDTH / 2 - 8, HEIGHT - 16, 16, 16, 1.5, Entity.SHIP);
 		// world = new World();
 		ui = new UI();
 		enemySpawn = new EnemySpawn();
