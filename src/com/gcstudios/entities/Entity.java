@@ -30,14 +30,14 @@ public class Entity {
 	protected BufferedImage sprite;
 
 	public static Random rand = new Random();
-	
+
 	public static BufferedImage SHIP = Game.spritesheet.getSprite(0, 0, 16, 16);
 	public static BufferedImage RIGHT_SHIP = Game.spritesheet.getSprite(16, 0, 16, 16);
 	public static BufferedImage LEFT_SHIP = Game.spritesheet.getSprite(32, 0, 16, 16);
 	public static BufferedImage METEOR1 = Game.spritesheet.getSprite(0, 16, 16, 16);
 	public static BufferedImage METEOR2 = Game.spritesheet.getSprite(16, 16, 16, 16);
 	public static BufferedImage METEOR3 = Game.spritesheet.getSprite(32, 16, 16, 16);
-	
+
 	public Entity(double x, double y, int width, int height, double speed, BufferedImage sprite) {
 		this.x = x;
 		this.y = y;

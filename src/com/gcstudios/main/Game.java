@@ -87,7 +87,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	public void tick() {
 		enemySpawn.tick();
-		
+
 		for (int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
 			e.tick();
@@ -154,6 +154,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			player.right = true;
 		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			player.left = true;
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_Z) {
+			player.shoot = true;
 		}
 	}
 
