@@ -10,6 +10,8 @@ public class Player extends Entity {
 	private int dir = 0;
 	public boolean shoot = false;
 	private int lastAtkTimer = 0, atkCD = 10;
+	public static int life = 5;
+	private int tempScore = 0;
 
 	public Player(int x, int y, int width, int height, double speed, BufferedImage sprite) {
 		super(x, y, width, height, speed, sprite);
@@ -18,6 +20,8 @@ public class Player extends Entity {
 	public void tick() {
 		movement();
 		shoot();
+		increaseLife();
+		restartGame();
 	}
 
 	public void render(Graphics g) {
@@ -72,6 +76,17 @@ public class Player extends Entity {
 
 			lastAtkTimer = 0;
 		}
+	}
 
+	private void increaseLife() {
+		if (Game.score - tempScore >= 1000) {
+			tempScore = Game.score;
+			life++;
+		}
+	}
+	
+	private void restartGame() {
+		if(life <= 0)
+			System.exit(1);
 	}
 }

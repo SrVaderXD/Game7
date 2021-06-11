@@ -7,7 +7,7 @@ import com.gcstudios.main.Game;
 
 public class Enemy extends Entity {
 
-	public int life, type;
+	public int life = 3, type;
 	private int initialFrames = 0, maxFrames = 25, curIndex = 0, maxIndex = 2;
 	private BufferedImage[] animationMeteor1, animationMeteor2, animationMeteor3;
 
@@ -29,6 +29,7 @@ public class Enemy extends Entity {
 
 		if (y > Game.HEIGHT) {
 			Game.entities.remove(this);
+			Player.life--;
 			return;
 		}
 
@@ -69,6 +70,14 @@ public class Enemy extends Entity {
 						Explosion explosion = new Explosion(x, y, 16, 16, 0, null, type);
 						Game.entities.add(explosion);
 						Game.entities.remove(this);
+						
+						if(type == 1) {
+							Game.score+=10;
+						} else if(type == 2) {
+							Game.score+=50;
+						} else if(type == 3) {
+							Game.score+=100;
+						}
 						return;
 					}
 					break;

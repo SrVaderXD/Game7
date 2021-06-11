@@ -12,9 +12,9 @@ public class EnemySpawn {
 	
 	private void spawn() {
 		curTime++;
-
-		if (curTime == maxTime) {
+		if (curTime >= maxTime) {
 			curTime = 0;
+			maxTime = Entity.rand.nextInt(70);
 
 			int yy = 0;
 			int xx = Entity.rand.nextInt(Game.WIDTH - 16);

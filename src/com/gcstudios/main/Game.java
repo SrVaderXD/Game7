@@ -30,17 +30,15 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static final int WIDTH = 120;
 	public static final int HEIGHT = 160;
 	public static final int SCALE = 4;
-
 	private BufferedImage image;
-
 	public static World world;
 	public static List<Entity> entities;
 	public static Spritesheet spritesheet;
 	public static Player player;
 	public EnemySpawn enemySpawn;
-
 	public UI ui;
-
+	public static int score = 0;
+	
 	public Game() {
 		addKeyListener(this);
 		setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));

@@ -6,7 +6,6 @@ public class Meteor3 extends Enemy{
 
 	public Meteor3(double x, double y, int width, int height, double speed, BufferedImage sprite) {
 		super(x, y, width, height, speed, sprite);
-		life = 6;
 		type = 3;
 	}
 
