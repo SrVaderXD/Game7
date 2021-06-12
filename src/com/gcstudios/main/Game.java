@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -83,7 +84,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		game.start();
 	}
 
-	public void tick() {
+	public void tick() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		enemySpawn.tick();
 
 		for (int i = 0; i < entities.size(); i++) {
@@ -129,7 +130,13 @@ public class Game extends Canvas implements Runnable, KeyListener {
 			delta += (now - lastTime) / ns;
 			lastTime = now;
 			if (delta >= 1) {
-				tick();
+				try {
+					tick();
+				} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+						| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				render();
 				frames++;
 				delta--;

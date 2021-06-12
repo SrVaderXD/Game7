@@ -4,8 +4,10 @@ import java.awt.image.BufferedImage;
 
 public class Meteor3 extends Enemy{
 
-	public Meteor3(double x, double y, int width, int height, double speed, BufferedImage sprite) {
-		super(x, y, width, height, speed, sprite);
+	private final static double SPEED = 1.5;
+	
+	public Meteor3(Double x, Double y, Integer width, Integer height, BufferedImage sprite) {
+		super(x, y, width, height, SPEED, sprite);
 		type = 3;
 	}
 

@@ -2,6 +2,10 @@ package com.gcstudios.entities;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import com.gcstudios.main.Game;
 
@@ -10,13 +14,16 @@ public class Enemy extends Entity {
 	public int life = 3, type;
 	private int initialFrames = 0, maxFrames = 25, curIndex = 0, maxIndex = 2;
 	private BufferedImage[] animationMeteor1, animationMeteor2, animationMeteor3;
+	private static final List<Class<? extends Enemy>> REGISTERED_ENEMIES = Collections
+			.unmodifiableList(Arrays.asList(Meteor1.class, Meteor2.class, Meteor3.class));
+	// new ArrayList <Class <? extends Enemy>>(Collections);
 
 	public Enemy(double x, double y, int width, int height, double speed, BufferedImage sprite) {
 		super(x, y, width, height, speed, sprite);
 		animationMeteor1 = new BufferedImage[3];
 		animationMeteor2 = new BufferedImage[3];
 		animationMeteor3 = new BufferedImage[3];
-		
+
 		for (int i = 0; i < 3; i++) {
 			animationMeteor1[i] = Game.spritesheet.getSprite(0, 16 + i * 16, 16, 16);
 			animationMeteor2[i] = Game.spritesheet.getSprite(16, 16 + i * 16, 16, 16);
@@ -36,16 +43,16 @@ public class Enemy extends Entity {
 		destroy();
 		animate();
 	}
-	
+
 	public void render(Graphics g) {
-		if(type == 1)
+		if (type == 1)
 			g.drawImage(animationMeteor1[curIndex], getX(), getY(), null);
-		if(type == 2)
+		if (type == 2)
 			g.drawImage(animationMeteor2[curIndex], getX(), getY(), null);
-		if(type == 3)
+		if (type == 3)
 			g.drawImage(animationMeteor3[curIndex], getX(), getY(), null);
 	}
-	
+
 	public void animate() {
 		initialFrames++;
 		if (initialFrames == maxFrames) {
@@ -70,13 +77,13 @@ public class Enemy extends Entity {
 						Explosion explosion = new Explosion(x, y, 16, 16, 0, null, type);
 						Game.entities.add(explosion);
 						Game.entities.remove(this);
-						
-						if(type == 1) {
-							Game.score+=10;
-						} else if(type == 2) {
-							Game.score+=50;
-						} else if(type == 3) {
-							Game.score+=100;
+
+						if (type == 1) {
+							Game.score += 10;
+						} else if (type == 2) {
+							Game.score += 50;
+						} else if (type == 3) {
+							Game.score += 100;
 						}
 						return;
 					}
@@ -84,5 +91,9 @@ public class Enemy extends Entity {
 				}
 			}
 		}
+	}
+
+	public static List<Class<? extends Enemy>> getEnemyType() {
+		return Enemy.REGISTERED_ENEMIES;
 	}
 }
