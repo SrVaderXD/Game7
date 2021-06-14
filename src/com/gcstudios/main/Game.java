@@ -8,12 +8,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-
 import com.gcstudios.entities.EnemySpawn;
 import com.gcstudios.entities.Entity;
 import com.gcstudios.entities.Player;
@@ -38,6 +39,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public EnemySpawn enemySpawn;
 	public UI ui;
 	public static int score = 0;
+	public BufferedImage BACK_GROUND;
 	
 	public Game() {
 		addKeyListener(this);
@@ -51,6 +53,11 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		ui = new UI();
 		enemySpawn = new EnemySpawn();
 		entities.add(player);
+		try {
+			BACK_GROUND = ImageIO.read(getClass().getResource("/BG.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void initFrame() {
@@ -103,7 +110,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		Graphics g = image.getGraphics();
 		g.setColor(new Color(0, 0, 0));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
-		// world.render(g);
+		g.drawImage(BACK_GROUND, 0, 0, null);
 		Collections.sort(entities, Entity.nodeSorter);
 		for (int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
